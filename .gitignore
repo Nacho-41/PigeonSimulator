@@ -1,0 +1,12 @@
+# Godot 4 – fișiere generate automat, nu se urcă pe GitHub
+.godot/
+/android/
+
+# Exporturile jocului (web / Windows) – se urcă pe itch.io, nu pe GitHub
+/build/
+*.zip
+
+# Fișiere de sistem
+Thumbs.db
+desktop.ini
+.DS_Store

@@ -1,0 +1,62 @@
+[gd_scene format=3 uid="uid://brymhw852jce5"]
+
+[ext_resource type="Script" uid="uid://8cmqbsni6fxo" path="res://scripts/game.gd" id="1_game"]
+[ext_resource type="PackedScene" uid="uid://c8k1uvtms5wna" path="res://assets/world.glb" id="2_world"]
+[ext_resource type="PackedScene" uid="uid://xj25o4d0nkdr" path="res://assets/kiosk.glb" id="3_kiosk"]
+[ext_resource type="Script" uid="uid://dqe5c78yfw3qk" path="res://scripts/player.gd" id="4_player"]
+[ext_resource type="PackedScene" uid="uid://cg8kjoupsvb0o" path="res://assets/pigeon_0.glb" id="5_pigeon"]
+
+[sub_resource type="ProceduralSkyMaterial" id="SkyMat"]
+sky_top_color = Color(0.31, 0.62, 0.918, 1)
+sky_horizon_color = Color(0.812, 0.902, 0.969, 1)
+ground_bottom_color = Color(0.435, 0.682, 0.29, 1)
+ground_horizon_color = Color(0.812, 0.902, 0.969, 1)
+sun_angle_max = 20.0
+
+[sub_resource type="Sky" id="Sky"]
+sky_material = SubResource("SkyMat")
+
+[sub_resource type="Environment" id="Env"]
+background_mode = 2
+sky = SubResource("Sky")
+ambient_light_source = 3
+ambient_light_energy = 0.42
+fog_enabled = true
+fog_light_color = Color(0.812, 0.902, 0.969, 1)
+fog_density = 0.0009
+fog_sky_affect = 0.2
+
+[node name="Game" type="Node3D" unique_id=1329190369]
+script = ExtResource("1_game")
+sticle_pentru_semi = 5
+sticle_pentru_evoluat = 10
+maxim_copii = 60
+copii_la_start = 8
+viteza_copii = 7.0
+greseala_tinta_copii = 1.7
+sticle_normale = 350
+sticle_aurii = 20
+sansa_sticla_pe_acoperis = 0.34
+viteza_boss = 11.0
+titlu_victorie = "Ai Câștigat!"
+
+[node name="Mediu" type="WorldEnvironment" parent="." unique_id=1096596008]
+environment = SubResource("Env")
+
+[node name="Soare" type="DirectionalLight3D" parent="." unique_id=917818288]
+transform = Transform3D(0.66447896, -0.61003697, 0.4316511, 0, 0.57760876, 0.81631374, -0.747307, -0.5424233, 0.38380888, 0, 0, 0)
+light_color = Color(1, 0.945, 0.839, 1)
+shadow_enabled = true
+directional_shadow_max_distance = 140.0
+
+[node name="Oras" parent="." unique_id=277007091 instance=ExtResource("2_world")]
+
+[node name="Chiosc" parent="." unique_id=983916722 instance=ExtResource("3_kiosk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18.136, 0, 14.785)
+
+[node name="Porumbel" type="CharacterBody3D" parent="." unique_id=743774135]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 34, 0.2, 30)
+script = ExtResource("4_player")
+
+[node name="Model" parent="Porumbel" unique_id=1685860685 instance=ExtResource("5_pigeon")]
+transform = Transform3D(1.2, 0, 0, 0, 1.2, 0, 0, 0, 1.2, 0, 0, 0)
